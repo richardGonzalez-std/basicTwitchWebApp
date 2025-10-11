@@ -1,0 +1,92 @@
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en" style="margin:0;padding:0;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-..." crossorigin="anonymous">
+    <title>Twitch App Basica</title>
+</head>
+
+<body style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color:#222831">
+    {% if logged %}
+    {% block main %}
+    <div class="container-fluid text-center mx-auto">
+        <h1 class="display-1"  style="color:#DFD0B8;">{{ user_data.data.0.login }}</h2>
+        <h3  style="color:#DFD0B8;">Sistema TwitchAPI</h1>
+
+        <div class="container text-center mx-auto row">
+            {% for canal, url in combined_data %}
+            <div class="card col-2 mx-5 my-5 p-0 shadow-lg" style="background-color:#393E46; width:20vw; height:30vh; cursor: pointer;" >
+                <img class="card-img-top img-fluid"  src="{{ url }}" alt="" style="object-fit: cover; max-width: 100%; max-height: 58%;">
+                <div class="card-body"  style="color:#DFD0B8">
+                    <h5 class="card-title">{{canal.user_login}}</h5>
+                    <p class="card-text">Game ID: {{canal.game_id}}</p>
+                    <p>Views: <span class="badge rounded-pill bg-danger">{{ canal.viewer_count }}</span></p>
+                </div>
+
+
+
+
+            </div>
+            {% endfor %}
+        </div>
+        <div class="d-flex flex-row" style="position: absolute; right:15rem; top:3rem;"><a href="{% url 'logout' %}" class="btn btn-primary">Logout</a></div>
+    </div>
+    {% endblock %}
+    {% else %}
+    {% block login %}
+        <div class="container-fluid text-center h-25 mx-auto py-5" style="background-color:#393E46; margin-top:15rem; border-radius: 1.5rem; width:max-content;">
+            <h2 class="py-2" style="color:#DFD0B8">Iniciar Sesion con Twitch</h2>
+            <a class="btn" style="background-color:#222831; color:#DFD0B8;"
+                href="https://id.twitch.tv/oauth2/authorize?client_id={{client_id}}&redirect_uri={{redirect_uri}}&response_type=code&scope=user%3Aread%3Afollows">Login
+                con Twitch</a>
+        </div>
+    {% endblock %}
+    {% endif %}
+    {% block scripts %}
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function(){
+           
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click',function(e){
+                    const popUpVideoPlayer = document.createElement('div');
+                    popUpVideoPlayer.setAttribute('id','twitch-embed');
+                    popUpVideoPlayer.setAttribute('class','position-fixed top-50 start-50 translate-middle');
+                    popUpVideoPlayer.style.zIndex = 1000;
+                    popUpVideoPlayer.style.backgroundColor = '#000';
+                    const closeButton = document.createElement('button');
+                    closeButton.setAttribute('class','btn btn-danger position-absolute top-0 end-0')
+                    closeButton.style.zIndex = 1001;
+                    closeButton.textContent = 'X';
+                    closeButton.addEventListener('click',function(){
+                        popUpVideoPlayer.remove();
+                        document.getElementsByClassName('container-fluid')[0].style.filter = 'none';
+
+                    
+            });
+                    document.body.appendChild(closeButton);
+                    document.getElementsByClassName('btn-danger')[0].style.margin = '2.5rem';
+                    document.getElementsByClassName('container-fluid')[0].style.filter = 'blur(20px)';
+                    document.body.appendChild(popUpVideoPlayer);
+                    new Twitch.Embed("twitch-embed",{
+                        width: 854,
+                        height: 480,
+                        autoplay: true,
+                        layout: "video",
+                        theme: "dark",
+                        channel: card.querySelector('#card-title').textContent,
+                        // Only needed if your site is also embedded on embed.example.com and othersite.example.com
+                       
+                    });
+            });
+        });
+        });
+    </script>
+    {% endblock %}
+</body>
+
+</html>
