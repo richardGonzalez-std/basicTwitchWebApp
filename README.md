@@ -122,9 +122,8 @@ MIT License
 ## 👤 Autor
 
 **Tu Nombre**
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- LinkedIn: [Tu Perfil](https://linkedin.com/in/tu-perfil)
-- Portfolio: [tu-sitio.com](https://tu-sitio.com)
+- GitHub: [@richardGonzalez-std](https://github.com/richardGonzalez-std)
+- LinkedIn: [riparedesgonzalez](www.linkedin.com/in/riparedesgonzalez)
 
 ## 🙏 Agradecimientos
 
