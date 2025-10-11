@@ -1,5 +1,4 @@
 from django.shortcuts import render
-import twitchCall
 from basicTwitchWebApp import settings
 from django.shortcuts import redirect
 import requests
