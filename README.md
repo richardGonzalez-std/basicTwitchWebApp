@@ -2,7 +2,8 @@
 
 Una aplicación web Django que permite a los usuarios autenticarse con Twitch y ver los streams en vivo de los canales que siguen.
 
-![Screenshot](screenshot.png) <!-- Agrega una captura de pantalla -->
+![Screenshot](/screenshot/screenshot_1.png) <!-- Agrega una captura de pantalla -->
+![Screenshot](/screenshot/screenshot_2.png) <!-- Agrega una captura de pantalla -->
 
 ## ✨ Características
 
