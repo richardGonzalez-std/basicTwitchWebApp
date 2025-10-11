@@ -15,7 +15,7 @@ Una aplicación web Django que permite a los usuarios autenticarse con Twitch y 
 
 ## 🛠️ Tecnologías
 
-- **Backend**: Django 4.2, Python 3.x
+- **Backend**: Django 5+, Python 3.x
 - **Frontend**: HTML5, Bootstrap 5, JavaScript (Vanilla)
 - **API**: Twitch API (Helix)
 - **Autenticación**: OAuth 2.0
