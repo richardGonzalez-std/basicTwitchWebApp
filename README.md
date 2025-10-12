@@ -31,7 +31,7 @@ Una aplicación web Django que permite a los usuarios autenticarse con Twitch y 
 ### 1. Clonar el repositorio
 ```bash
 git clone https://github.com/tu-usuario/basicTwitchWebApp.git
-cd twitch-viewer
+cd basicTwitchWebApp
 ```
 
 ### 2. Crear entorno virtual
