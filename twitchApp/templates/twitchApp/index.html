@@ -55,15 +55,17 @@
                 card.addEventListener('click',function(e){
                     const popUpVideoPlayer = document.createElement('div');
                     popUpVideoPlayer.setAttribute('id','twitch-embed');
-                    popUpVideoPlayer.setAttribute('class','position-fixed top-50 start-50 translate-middle');
+                    popUpVideoPlayer.setAttribute('class','position-fixed start-50 rounded-pill translate-middle w-100 h-100 d-flex justify-content-center align-items-center');
                     popUpVideoPlayer.style.zIndex = 1000;
-                    popUpVideoPlayer.style.backgroundColor = '#000';
+                    popUpVideoPlayer.style.top = '30%';
+                    popUpVideoPlayer.style.backgroundColor = 'transparent';
                     const closeButton = document.createElement('button');
                     closeButton.setAttribute('class','btn btn-danger position-absolute top-0 end-0')
                     closeButton.style.zIndex = 1001;
                     closeButton.textContent = 'X';
                     closeButton.addEventListener('click',function(){
                         popUpVideoPlayer.remove();
+                        closeButton.remove();
                         document.getElementsByClassName('container-fluid')[0].style.filter = 'none';
 
                     
@@ -82,6 +84,20 @@
                         // Only needed if your site is also embedded on embed.example.com and othersite.example.com
                        
                     });
+                    const chatEmbeded = document.createElement('iframe');
+                    chatEmbeded.setAttribute('id','twitch-chat');
+                    chatEmbeded.setAttribute('height','250');
+                    chatEmbeded.setAttribute('class','position-fixed start-50 translate-middle d-flex justify-content-center align-items-center');
+                    chatEmbeded.style.border = 'none';
+                    chatEmbeded.style.top = '90%';
+                    chatEmbeded.setAttribute('width','1000');
+                    chatEmbeded.setAttribute('src',`https://www.twitch.tv/embed/${card.querySelector('.card-title').textContent}/chat?parent=localhost`);
+                    chatEmbeded.style.marginTop = '1rem';
+                    setTimeout(() => {
+                        popUpVideoPlayer.appendChild(chatEmbeded);
+                        chatEmbeded.style.zIndex = 1000;
+                    }, 2000);
+                   
             });
         });
         });
