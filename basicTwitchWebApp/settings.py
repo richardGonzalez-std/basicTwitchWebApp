@@ -28,7 +28,7 @@ DEBUG = False
 
 
 ALLOWED_HOSTS = [
-    'basictwitchwebapp.onrender.com/'
+    'basictwitchwebapp.onrender.com'
 ]
 
 CLIENT_ID = config("CLIENT_ID")
