@@ -34,7 +34,7 @@ ALLOWED_HOSTS = [
 CLIENT_ID = config("CLIENT_ID")
 CLIENT_SECRET = config("CLIENT_SECRET")
 
-REDIRECT_URI = "http://localhost:8000/validate/"
+REDIRECT_URI = "https://basictwitchwebapp.onrender.com/validate/"
 # Application definition
 
 INSTALLED_APPS = [
